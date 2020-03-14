@@ -131,6 +131,14 @@ If the language is not on the list, it will default to English, because it is th
 However, no list items will have attribute 'selected.'
 */
 
+/*
+Function to detect white space in the text to know is user input a single word or multiword, if there is white spece return space,else return false       
+*/
+     function checkSingleWord(body) {
+          return body.indexOf(' ') >= 0;
+     }
+
+
 $(document).ready(function(){
     $(this).find('option:selected').removeAttr('selected');
   //  $(this).find('option[val="fr"]').attr("selected",true);
