@@ -121,9 +121,23 @@ function checkForSwears(body) {
     data: { text: body },
     success: function(result) { // TODO: handle if there's swear words (popup or something)
       // returns "result" which is either the string "true" or "false"
-    }    
+    }
   });
 }
+
+/*
+Function to detect the UI language and select it in the language to translate from,
+If the language is not on the list, it will default to English, because it is the first list element.
+However, no list items will have attribute 'selected.'
+*/
+
+$(document).ready(function(){
+    $(this).find('option:selected').removeAttr('selected');
+  //  $(this).find('option[val="fr"]').attr("selected",true);
+    $(this).find(
+      "option[val*='" + window.navigator.language.slice(0, 2) +"']"
+    ).attr("selected", true); //find the UI language and the list item that matches it and select it.
+});
 
 // Everything in this function runs when the document is loaded
 $(function() {
@@ -146,9 +160,15 @@ $(function() {
 <div id="lang-bar">
   <select id="left-lang">
     <option val="en">English</option>
+    <option val="es" selected=selected>Spanish</option>
+    <option val="fr">French</option>
+    <option val="de">German</option>
   </select>
   <select id="right-lang">
     <option val="en">English</option>
+    <option val="es">Spanish</option>
+    <option val="fr">French</option>
+    <option val="de">German</option>
   </select>
 </div>
 <div id="text-box-containers">
